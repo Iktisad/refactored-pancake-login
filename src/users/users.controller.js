@@ -5,7 +5,7 @@ export default (UserService) => {
             console.log("create user using local registration");
             const user = await UserService.createUserWithLocalStrategy(req);
             // using google registration
-            console.log("create user using openid-connect");
+            // console.log("create user using openid-connect");
 
             res.status(200).json({
                 message: "User Registered!",
@@ -22,7 +22,11 @@ export default (UserService) => {
     };
 
     const signupWithGoogle = () => {};
-    const login = (req, res, next) => console.log("user login");
+    const login = (req, res, next) => {
+        // write the jwt logic here or in ther services from here
+
+        console.log("user login");
+    };
     const getAllUser = (req, res, next) => console.log("get all user");
 
     return Object.freeze({

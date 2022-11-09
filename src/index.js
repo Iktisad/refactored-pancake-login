@@ -1,8 +1,7 @@
 import express from "express";
 import passport from "passport";
-// import passport from "passport";
-import "./users/auth/passport/local-strategy.js";
 import module from "./users/users.module.js";
+import "./users/auth/passport/local-strategy.js";
 
 const [PORT, APP_HOST_IP] = [3000, "http://localhost:3000"];
 
