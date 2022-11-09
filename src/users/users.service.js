@@ -1,4 +1,3 @@
-import LocalStrategy from 'passport-local';
 
 export default (UserRepository) => {
     const createUserWithLocalStrategy = async ({ body }) => {
@@ -13,30 +12,15 @@ export default (UserRepository) => {
         return data;
     };
 
-    const loginWithLocalStrategy = async()=>{
-
-        if (!username || !password)
-        throw UnauthorizedException("Invalid Credentials");
+    const getUser = async()=>{
         
-        const user = await repository.findOne({ username });
         
-        const localStrategy = new LocalStrategy(function verify(username, password, cb) {
-            const { username, password } = body;
-            
-            if (!user) throw UnauthorizedException("Invalid Username.");
-            const passwordMatch = bcrypt.compareSync(password, user.password); // true
-        
-            if (!passwordMatch) throw new Error("Invalid Password.");
-            
-        // return issueJWT(user);
-            return cb(null, user);
-        });
     };
 
     const createUserWithGoogleStrategy = async () => {};
 
     return Object.freeze({
         createUserWithLocalStrategy,
-        loginWithLocalStrategy,
+        getUser,
     });
 };

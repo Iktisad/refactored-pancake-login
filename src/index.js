@@ -1,10 +1,14 @@
 import express from "express";
-import "./users/auth/passport/passport.js";
-import routes from "./users/user.routes.js";
+import passport from "passport";
+// import passport from "passport";
+import "./users/auth/passport/local-strategy.js";
+import module from "./users/users.module.js";
 
 const [PORT, APP_HOST_IP] = [3000, "http://localhost:3000"];
 
 const app = express();
+
+app.use(passport.initialize());
 
 //bodyparser setup
 app.use(express.urlencoded({ extended: true }));
@@ -14,7 +18,7 @@ app.use(express.json());
 app.get("/", (req, res, next) => {
     res.send("<h1>Server is working</h1>");
 });
-app.use("/", routes);
+app.use("/", module);
 // configure the database
 
 // start the express server

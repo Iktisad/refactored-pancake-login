@@ -4,9 +4,12 @@ import express from "express";
 const router = express.Router();
 // const controller = usersController();
 export default (module) => {
-    router.post("/create-account", module.signup);
+    router.route("/create-account").post(module.signup);
+    // router.route("/create-account-with-google").post(module.signup);
+
+    router.route("/login").post(module.login);
     return router;
-}
+};
 // router.post('/login',
 //   passport.authenticate('local', { failureRedirect: '/login' }),
 //   function(req, res) {
